@@ -1,0 +1,52 @@
+C:\Users\arkhi\source\repos\Курсовая\Курсовая\obj\Debug\Курсовая.csproj.AssemblyReference.cache
+C:\Users\arkhi\source\repos\Курсовая\Курсовая\obj\Debug\Курсовая.csproj.SuggestedBindingRedirects.cache
+C:\Users\arkhi\source\repos\Курсовая\Курсовая\obj\Debug\Курсовая.Form1.resources
+C:\Users\arkhi\source\repos\Курсовая\Курсовая\obj\Debug\Курсовая.Properties.Resources.resources
+C:\Users\arkhi\source\repos\Курсовая\Курсовая\obj\Debug\Курсовая.csproj.GenerateResource.cache
+C:\Users\arkhi\source\repos\Курсовая\Курсовая\obj\Debug\Курсовая.csproj.CoreCompileInputs.cache
+C:\Users\arkhi\source\repos\Курсовая\Курсовая\bin\Debug\Курсовая.exe.config
+C:\Users\arkhi\source\repos\Курсовая\Курсовая\bin\Debug\Курсовая.exe
+C:\Users\arkhi\source\repos\Курсовая\Курсовая\bin\Debug\Курсовая.pdb
+C:\Users\arkhi\source\repos\Курсовая\Курсовая\obj\Debug\Курсовая.exe
+C:\Users\arkhi\source\repos\Курсовая\Курсовая\obj\Debug\Курсовая.pdb
+C:\Users\schir\Downloads\Telegram Desktop\Курсовая (2)\Курсовая\Курсовая\obj\Debug\Курсовая.exe
+C:\Users\schir\Downloads\Telegram Desktop\Курсовая (2)\Курсовая\Курсовая\obj\Debug\Курсовая.pdb
+C:\Users\schir\Downloads\Telegram Desktop\Курсовая (2)\Курсовая\Курсовая\bin\Debug\Курсовая.exe.config
+C:\Users\schir\Downloads\Telegram Desktop\Курсовая (2)\Курсовая\Курсовая\bin\Debug\Курсовая.exe
+C:\Users\schir\Downloads\Telegram Desktop\Курсовая (2)\Курсовая\Курсовая\bin\Debug\Курсовая.pdb
+C:\Users\schir\Downloads\Telegram Desktop\Курсовая (2)\Курсовая\Курсовая\obj\Debug\Курсовая.csproj.AssemblyReference.cache
+C:\Users\schir\Downloads\Telegram Desktop\Курсовая (2)\Курсовая\Курсовая\obj\Debug\Курсовая.csproj.SuggestedBindingRedirects.cache
+C:\Users\schir\Downloads\Telegram Desktop\Курсовая (2)\Курсовая\Курсовая\obj\Debug\Курсовая.Form1.resources
+C:\Users\schir\Downloads\Telegram Desktop\Курсовая (2)\Курсовая\Курсовая\obj\Debug\Курсовая.Properties.Resources.resources
+C:\Users\schir\Downloads\Telegram Desktop\Курсовая (2)\Курсовая\Курсовая\obj\Debug\Курсовая.csproj.GenerateResource.cache
+C:\Users\schir\Downloads\Telegram Desktop\Курсовая (2)\Курсовая\Курсовая\obj\Debug\Курсовая.csproj.CoreCompileInputs.cache
+C:\Users\rrla2\OneDrive\Рабочий стол\курсач Левицкая\КГ\Курсовая\Курсовая\bin\Debug\Курсовая.exe.config
+C:\Users\rrla2\OneDrive\Рабочий стол\курсач Левицкая\КГ\Курсовая\Курсовая\bin\Debug\Курсовая.exe
+C:\Users\rrla2\OneDrive\Рабочий стол\курсач Левицкая\КГ\Курсовая\Курсовая\bin\Debug\Курсовая.pdb
+C:\Users\rrla2\OneDrive\Рабочий стол\курсач Левицкая\КГ\Курсовая\Курсовая\obj\Debug\Курсовая.csproj.AssemblyReference.cache
+C:\Users\rrla2\OneDrive\Рабочий стол\курсач Левицкая\КГ\Курсовая\Курсовая\obj\Debug\Курсовая.Form1.resources
+C:\Users\rrla2\OneDrive\Рабочий стол\курсач Левицкая\КГ\Курсовая\Курсовая\obj\Debug\Курсовая.Properties.Resources.resources
+C:\Users\rrla2\OneDrive\Рабочий стол\курсач Левицкая\КГ\Курсовая\Курсовая\obj\Debug\Курсовая.csproj.GenerateResource.cache
+C:\Users\rrla2\OneDrive\Рабочий стол\курсач Левицкая\КГ\Курсовая\Курсовая\obj\Debug\Курсовая.csproj.CoreCompileInputs.cache
+C:\Users\rrla2\OneDrive\Рабочий стол\курсач Левицкая\КГ\Курсовая\Курсовая\obj\Debug\Курсовая.exe
+C:\Users\rrla2\OneDrive\Рабочий стол\курсач Левицкая\КГ\Курсовая\Курсовая\obj\Debug\Курсовая.pdb
+C:\Users\rrla2\OneDrive\Рабочий стол\курсач Графика\КГ\Курсовая\Курсовая\bin\Debug\Курсовая.exe.config
+C:\Users\rrla2\OneDrive\Рабочий стол\курсач Графика\КГ\Курсовая\Курсовая\bin\Debug\Курсовая.exe
+C:\Users\rrla2\OneDrive\Рабочий стол\курсач Графика\КГ\Курсовая\Курсовая\bin\Debug\Курсовая.pdb
+C:\Users\rrla2\OneDrive\Рабочий стол\курсач Графика\КГ\Курсовая\Курсовая\obj\Debug\Курсовая.csproj.AssemblyReference.cache
+C:\Users\rrla2\OneDrive\Рабочий стол\курсач Графика\КГ\Курсовая\Курсовая\obj\Debug\Курсовая.Form1.resources
+C:\Users\rrla2\OneDrive\Рабочий стол\курсач Графика\КГ\Курсовая\Курсовая\obj\Debug\Курсовая.Properties.Resources.resources
+C:\Users\rrla2\OneDrive\Рабочий стол\курсач Графика\КГ\Курсовая\Курсовая\obj\Debug\Курсовая.csproj.GenerateResource.cache
+C:\Users\rrla2\OneDrive\Рабочий стол\курсач Графика\КГ\Курсовая\Курсовая\obj\Debug\Курсовая.csproj.CoreCompileInputs.cache
+C:\Users\rrla2\OneDrive\Рабочий стол\курсач Графика\КГ\Курсовая\Курсовая\obj\Debug\Курсовая.exe
+C:\Users\rrla2\OneDrive\Рабочий стол\курсач Графика\КГ\Курсовая\Курсовая\obj\Debug\Курсовая.pdb
+F:\CG_Kurs\КГ\Курсовая\Курсовая\bin\Debug\Курсовая.exe.config
+F:\CG_Kurs\КГ\Курсовая\Курсовая\bin\Debug\Курсовая.exe
+F:\CG_Kurs\КГ\Курсовая\Курсовая\bin\Debug\Курсовая.pdb
+F:\CG_Kurs\КГ\Курсовая\Курсовая\obj\Debug\Курсовая.csproj.AssemblyReference.cache
+F:\CG_Kurs\КГ\Курсовая\Курсовая\obj\Debug\Курсовая.Form1.resources
+F:\CG_Kurs\КГ\Курсовая\Курсовая\obj\Debug\Курсовая.Properties.Resources.resources
+F:\CG_Kurs\КГ\Курсовая\Курсовая\obj\Debug\Курсовая.csproj.GenerateResource.cache
+F:\CG_Kurs\КГ\Курсовая\Курсовая\obj\Debug\Курсовая.csproj.CoreCompileInputs.cache
+F:\CG_Kurs\КГ\Курсовая\Курсовая\obj\Debug\Курсовая.exe
+F:\CG_Kurs\КГ\Курсовая\Курсовая\obj\Debug\Курсовая.pdb

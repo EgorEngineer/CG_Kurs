@@ -1,0 +1,252 @@
+using System.Collections.Generic;
+using System;
+using System.Drawing;
+using System.IO;
+using System.Linq;
+using System.Windows.Forms;
+
+namespace Курсовая
+{
+    public sealed partial class Form1 : Form
+    {
+        private const string objFile = "s.obj";
+        private readonly List<Vector[]> originalPoly = new List<Vector[]>();
+        private readonly List<Vector> Normals = new List<Vector>();
+        private List<Vector[]> myPoly = new List<Vector[]>();
+        private Matrix myMatrix;
+        private int rotationAngle;
+        public double minX = 100;
+        public double maxX = -100;
+        public double minY = 100;
+        public double maxY = -100;
+        public double minZ = 100;
+
+        public double maxZ = -100;
+
+        //public List<> Polygons = new List<>();
+        public Form1()
+        {
+            InitializeComponent();
+            SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer |
+                     ControlStyles.UserPaint, true); //снизить мерцание
+            //цвет и размер экрана
+            Width = 1280;
+            Height = 720;
+            BackColor = Color.LightCyan;
+            ReadModelPolygons();
+            FillTransformMatrix();
+            KeyDown += OnKey;
+            Paint += OnPaint;
+        }
+
+        private void OnPaint(object sender, PaintEventArgs e)
+        {
+            TransformModel();
+            DrawModel(e.Graphics);
+        }
+
+        private void TransformModel()
+        {
+            var rotationMatrix = Matrix.CreateYSpinMatrix(rotationAngle);
+            myPoly = originalPoly
+                .Select(points => points.Select(p => myMatrix * rotationMatrix * p))
+                .OrderBy(points => points.Average(p => p.Z)).Select(p => p.ToArray()).ToList();
+        }
+
+        private void OnKey(object sender, KeyEventArgs e) //кнопочки
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Escape:
+                    Close();
+                    break;
+                case Keys.Right:
+                    rotationAngle += 5; //Угол поворота
+                    Refresh();
+                    break;
+                case Keys.Left:
+                    rotationAngle -= 5;
+                    Refresh();
+                    break;
+            }
+        }
+
+        private void ReadModelPolygons() //парсер
+        {
+            var vectors = new List<Vector>();
+            var vectorsNorm = new List<Vector>();
+            foreach (var line in File.ReadAllLines(objFile))
+            {
+                var words = line.Replace('.', ',').Split(' ');
+                if (words[0] == "v") //вершина
+                {
+                    var xv = double.Parse(words[1]);
+                    var yv = double.Parse(words[2]);
+                    var zv = double.Parse(words[3]);
+                    vectors.Add(new Vector(xv, yv, zv));
+                    if (xv < minX) minX = xv;
+                    else if (xv > maxX) maxX = xv;
+                    if (yv < minY) minY = yv;
+                    else if (yv > maxY) maxY = yv;
+                    if (zv < minZ) minZ = zv;
+                    else if (zv > maxZ) maxZ = zv;
+                }
+                else if (words[0] == "vn")
+                {
+                    vectorsNorm.Add(new Vector(double.Parse(words[1]), double.Parse(words[2]), double.Parse(words[3])));
+                }
+                else if (words[0] == "f") //поверхность
+                {
+                    var pointIndexes = new List<int>();
+                    var polygon = new List<Vector>();
+                    //var normalIndex = int.Parse(words[1].Split('/')[2]) - 1;
+
+                    for (var i = 1; i < words.Length; i++)
+                    {
+                        pointIndexes.Add(int.Parse(words[i].Split('/')[0]) - 1);
+                    }
+
+                    foreach (var index in pointIndexes)
+                        polygon.Add(vectors[index]);
+                    originalPoly.Add(polygon.ToArray());
+                    Normals.Add(vectorsNorm[int.Parse(words[2].Split('/')[2]) - 1]);
+                    //Normals.Add(vectorsNorm[int.Parse(words[2].Split('/')[2]) - 1]);
+                    //Normals.Add(vectorsNorm[int.Parse(words[3].Split('/')[2]) - 1]);
+                }
+            }
+        }
+
+        private void FillTransformMatrix()
+        {
+            var viewportMatrix = Matrix.CreateViewportMatrix(0, -200, Width, Height, maxZ -
+                minZ);
+            var projectionMatrix = Matrix.CreateProjectionMatrix(minX, maxX, minY, maxY, maxZ,
+                minZ);
+            var cameraPosition = new Vector(0, 0.3, 1); //смотрящий (направление взгляда)
+            var center = new Vector(0, 0, 0);
+            var z = cameraPosition - center;
+            var x = Vector.ScalarMultiplication(new Vector(0, 1, 0), z);
+            var y = Vector.ScalarMultiplication(z, x);
+            var lookAtMatrix = Matrix.CreateLookAtMatrix(x, y, z, cameraPosition);
+            var scaleMatrix = Matrix.CreateScaleMatrix(0.50, 0.70, 0.70); //размер объекта
+            myMatrix = viewportMatrix * projectionMatrix * lookAtMatrix * scaleMatrix;
+        }
+
+        private void DrawModel(Graphics graphics)
+        {
+            /*var colorCoefficientStep = 1.0 / (myPoly.Count + 200);//освещение
+            var colorCoefficient = colorCoefficientStep * 200;
+
+            foreach (var polygon in myPoly)
+            {
+                var points = new List<Point>();
+                foreach (var point in polygon)
+                    points.Add(new Point((int)point.X, (int)point.Y));
+                colorCoefficient += colorCoefficientStep;
+                var brush = new SolidBrush(Color.FromArgb((int)(100 * colorCoefficient),//цвет машины
+                (int)(222 * colorCoefficient),
+                (int)(222 * colorCoefficient)));
+                graphics.FillPolygon(brush, points.ToArray());
+            }*/
+            for (var i = 0; i < myPoly.Count; i++)
+            {
+                var points = new List<Point>();
+                foreach (var point in myPoly[i])
+                    points.Add(new Point((int)point.X, (int)point.Y));
+                var a = myPoly[i][2] - myPoly[i][0];
+                var b = myPoly[i][1] - myPoly[i][0];
+                var normal = CalculateNormal(b, a);
+                //var brush = new SolidBrush(CalculateColor((float)normal.X, (float)normal.Y, (float)normal.Z));
+                //var brush = new SolidBrush(CalculateColor((float)Normals[i].X, (float)Normals[i].Y, (float)Normals[i].Z));
+                //Fill(points[0], points[1], points[2], Normals[i], Normals[i + 1],Normals[i + 2], graphics);
+                //graphics.FillPolygon(brush, points.ToArray());
+                DoMethodGuro(points[0], points[1], points[2], Normals[i].Normalize(), graphics);
+            }
+        }
+
+        private Vector CalculateNormal(Vector first, Vector second)
+        {
+            return (first * second).Normalize();
+        }
+
+        private Color Color2(Vector normal, Vector point)
+        {
+            var rf = 0.0f;
+            var gf = 0.0f;
+            var bf = 1.0f;
+            var light = new Vector(0, 0.3, 1);
+            var viewDirection = new Vector(0, 0.3, 1);
+            var current = new Vector( light.X - normal.X,   light.Y-normal.Y,  light.Z-normal.Z).Normalize();
+            float ambientR = 1.0f * rf;
+            float ambientG = 1.0f * gf;
+            float ambientB = 1.0f * bf;
+            float diffuse = (float)Math.Max(Vector.Scalar(normal.Normalize(), (new Vector(light.X * -1, light.Y * -1, light.Z * -1) - point).Normalize()), 0.0f) * 0.5f;
+            //float diffuse = (float)Math.Max(Vector.Scalar(new Vector(light.X * -1, light.Y * -1, light.Z * -1), normal), 0.0f) * 0.5f;
+            //float specular = (float)Math.Pow(Math.Max(Vector.Scalar(Reflect(light, normal).Normalize(), viewDirection), 0.0f), 32) * 0.8f;
+            //float specular = (float)Math.Pow(Math.Max(Vector.Scalar(Reflect(light, normal).Normalize(), (new Vector(light.X * -1, light.Y * -1, light.Z * -1) - point).Normalize()), 0.0f), 32) * 0.8f;
+            float specular = 0.8f * (float)Math.Pow(Math.Max(Vector.Scalar(2 * Vector.Scalar(normal, current) * normal - current, viewDirection), 0), 32);
+
+            int r = (int)(255 * (ambientR + diffuse + specular));
+            int g = (int)(255 * (ambientG+ diffuse + specular));
+            int b = (int)(255 * (ambientB+ diffuse + specular));
+
+            r = Math.Min(255, (int)(Math.Max(0, r)));
+            g = Math.Min(255, (int)(Math.Max(0, g)));
+            b = Math.Min(255, (int)(Math.Max(0, b)));
+            
+            return Color.FromArgb(r, g, b);
+        }
+
+        private Vector Reflect(Vector incident, Vector normal)
+        {
+            return incident - 2.0f * Vector.Scalar(incident, normal) * normal;
+        }
+
+        private void DoMethodGuro(PointF p0, PointF p1, PointF p2, Vector normal, Graphics graphics)
+        {
+            var i = 0.0f;
+            var px1 = 0.0;
+            var px2 = 0.0;
+            if (p0.Y < p2.Y)
+            {
+                (p0, p2) = (p2, p0);
+            }
+            if (p0.Y < p1.Y)
+            {
+                (p0, p1) = (p1, p0);
+            }
+            if (p1.Y < p2.Y)
+            {
+                (p1, p2) = (p2, p1);
+            }
+            for (var y = p0.Y; y >= p2.Y; y--)
+            {
+                if (y >= p1.Y)
+                {
+                    px1 = p0.X + (p2.X - p0.X) * ((p0.Y - y) / (p0.Y - p2.Y));
+                    px2 = p0.X + (p1.X - p0.X) * ((p0.Y - y) / (p0.Y - p1.Y));
+                }
+
+                if (y < p1.Y)
+                {
+                    px1 = p2.X - (p2.X - p0.X) * ((p2.Y - y) / (p2.Y - p0.Y));
+                    px2 = p2.X - (p2.X - p1.X) * ((p2.Y - y) / (p2.Y - p1.Y));
+                }
+
+                var xMin = Math.Min(px1, px2);
+                var xMax = Math.Max(px1, px2);
+                var n = new Vector(xMin, normal.Y, normal.Z);
+                for (var x = Math.Min(px1, px2); x <= Math.Max(px1, px2); x++)
+                {
+                    //var normalN = CalculateNormal();
+                    //var col = Color2(new Vector(x, y, 1).Normalize());
+                    var col = Color2(normal.Normalize(), new Vector(x, y, 1).Normalize());
+                    //var temp = new Vector(n.X + 1, n.Y, n.Z);
+                    //n = temp;
+                    //var col = CalculateColor((float)normalN.X, (float)normalN.Y, (float)normalN.Z, new PointF((float)x, y));
+                    graphics.FillRectangle(new SolidBrush(col), (float)x, y, 1, 1);
+                }
+            }
+        }
+    }
+}

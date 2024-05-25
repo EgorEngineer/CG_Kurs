@@ -1,0 +1,10 @@
+F:\CG_Kurs\КГ\Курсовая\Курсовая\bin\Debug\CG_Kurs.exe.config
+F:\CG_Kurs\КГ\Курсовая\Курсовая\bin\Debug\CG_Kurs.exe
+F:\CG_Kurs\КГ\Курсовая\Курсовая\bin\Debug\CG_Kurs.pdb
+F:\CG_Kurs\КГ\Курсовая\Курсовая\obj\Debug\CG_Kurs.csproj.AssemblyReference.cache
+F:\CG_Kurs\КГ\Курсовая\Курсовая\obj\Debug\CG_Kurs.Form1.resources
+F:\CG_Kurs\КГ\Курсовая\Курсовая\obj\Debug\CG_Kurs.Properties.Resources.resources
+F:\CG_Kurs\КГ\Курсовая\Курсовая\obj\Debug\CG_Kurs.csproj.GenerateResource.cache
+F:\CG_Kurs\КГ\Курсовая\Курсовая\obj\Debug\CG_Kurs.csproj.CoreCompileInputs.cache
+F:\CG_Kurs\КГ\Курсовая\Курсовая\obj\Debug\CG_Kurs.exe
+F:\CG_Kurs\КГ\Курсовая\Курсовая\obj\Debug\CG_Kurs.pdb
